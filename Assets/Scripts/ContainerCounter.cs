@@ -1,53 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContainerCounter : MonoBehaviour, IKitchenObjectParent
+public class ContainerCounter : BaseCounter
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
-    [SerializeField] private Transform clearTopPoint;
 
-    private KitchenObject kitchenObject;
+    public event EventHandler OnPlayerGrabbedObject;
 
-    //Instantiate proper ingredient on the clear counter if there is none
-    //If there is then pick it up by player
-    public void Interact(Player player)
+
+    // Take a kitchen object from the container
+    public override void Interact(Player player)
     {
-        if (kitchenObject == null)
+        if(!player.HasKitchenObject())
         {
-            Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab, clearTopPoint);
-            kitchenObjectTransform.GetComponent<KitchenObject>().SetKitchenObjectParent(this);
+            // Player is not carrying something
+            KitchenObject.SpawnKitchenObject(cuttingKitchenObjectSo, this);
+
+            OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);
         }
-        else
-        {
-            kitchenObject.SetKitchenObjectParent(player);
-            Debug.Log(kitchenObject.GetKicthenObjectParent());
-        }
-
-    }
-
-    public Transform GetKitchenObjectFollowTransform()
-    {
-        return clearTopPoint;
-    }
-
-    public void SetKitchenObject(KitchenObject kitchenObject)
-    {
-        this.kitchenObject = kitchenObject;
-    }
-
-    public KitchenObject GetKitchenObject()
-    {
-        return kitchenObject;
-    }
-
-    public void ClearKitchenObject()
-    {
-        kitchenObject = null;
-    }
-
-    public bool HasKitchenObject()
-    {
-        return kitchenObject != null;
     }
 }

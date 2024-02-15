@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IKitchenObjectParent
+public class Player : BaseCounter, IKitchenObjectParent
 {
     public static Player Instance { get; private set;}
 
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs
     {
-        public ClearCounter selectedCounter;
+        public BaseCounter selectedCounter;
     }
 
     [SerializeField] private float movementSpeed = 7f;
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private Vector3 lastInteractDirection;
     private bool isWalking;
-    private ClearCounter selectedCounter;
+    private BaseCounter selectedCounter;
     private KitchenObject kitchenObject;
 
     private void Awake()
@@ -71,11 +71,11 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         // Return a boolean value for if there is any gameobject in specific 
         if(Physics.Raycast(transform.position, lastInteractDirection, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         {
-            if(raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
+            if(raycastHit.transform.TryGetComponent(out BaseCounter baseCounter))
             {
-                if(clearCounter != selectedCounter)
+                if(baseCounter != selectedCounter)
                 {
-                    selectedCounter = clearCounter;
+                    selectedCounter = baseCounter;
 
                     SetSelectedCounter(selectedCounter);
                 } 
@@ -112,7 +112,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
             // Attempt only move on the x-direction
             Vector3 moveDirectionX = new Vector3(movementVector.x, 0, 0).normalized;
-            canMove = !Physics.CapsuleCast(footPosition, headPosition, playerRadius, moveDirectionX, moveDistance);
+            canMove = moveDirection.x != 0 && !Physics.CapsuleCast(footPosition, headPosition, playerRadius, moveDirectionX, moveDistance);
 
             if (canMove)
             {
@@ -126,7 +126,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
                 // Attempt only move on the z-direction
                 Vector3 moveDirectionZ = new Vector3(0, 0, moveDirection.z).normalized;
-                canMove = !Physics.CapsuleCast(footPosition, headPosition, playerRadius, moveDirectionZ, moveDistance);
+                canMove = moveDirection.z != 0 && !Physics.CapsuleCast(footPosition, headPosition, playerRadius, moveDirectionZ, moveDistance);
 
                 if (canMove)
                 {
@@ -154,7 +154,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     }
 
-    private void SetSelectedCounter(ClearCounter selectedCounter)
+    private void SetSelectedCounter(BaseCounter selectedCounter)
     {
         this.selectedCounter = selectedCounter;
 

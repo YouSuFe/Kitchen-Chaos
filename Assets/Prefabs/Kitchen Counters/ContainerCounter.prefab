@@ -125,7 +125,8 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 1a0afd856a35421469b28b916116fd9c, type: 2}
     m_RemovedComponents:
     - {fileID: 6289625630049244101, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5261771210811040880, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4589716710238282922, guid: 9a9137fa2b035d34e881701d2c178192,
@@ -133,6 +134,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3511184323070154961}
   m_SourcePrefab: {fileID: 100100000, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
+--- !u!1 &675312570813862130 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 102550813385737453, guid: 9a9137fa2b035d34e881701d2c178192,
+    type: 3}
+  m_PrefabInstance: {fileID: 590926336994808863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &924812325351332628 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 353237590725857035, guid: 9a9137fa2b035d34e881701d2c178192,
+    type: 3}
+  m_PrefabInstance: {fileID: 590926336994808863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3999925826250535092 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4589716710238282923, guid: 9a9137fa2b035d34e881701d2c178192,
@@ -157,11 +170,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc8e6884068949cc946e730ef2ccffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearCounter: {fileID: 0}
-  visualGameObject: {fileID: 7226129776144802160}
+  baseCounter: {fileID: 2568148599342984436}
+  visualGameObjectArray:
+  - {fileID: 7226129776144802160}
+  - {fileID: 8733213891209121529}
+  - {fileID: 924812325351332628}
+  - {fileID: 675312570813862130}
 --- !u!1 &7226129776144802160 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7816906318471787887, guid: 9a9137fa2b035d34e881701d2c178192,
+    type: 3}
+  m_PrefabInstance: {fileID: 590926336994808863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8733213891209121529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8143070647044102886, guid: 9a9137fa2b035d34e881701d2c178192,
     type: 3}
   m_PrefabInstance: {fileID: 590926336994808863}
   m_PrefabAsset: {fileID: 0}
@@ -275,8 +298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b9918e6b2184881be3159439957431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitchenObjectSO: {fileID: 11400000, guid: 046b7721bb764453e84f9aeb441c353a, type: 2}
   clearTopPoint: {fileID: 353128772188281352}
+  kitchenObjectSO: {fileID: 11400000, guid: 046b7721bb764453e84f9aeb441c353a, type: 2}
 --- !u!1001 &2409366364130565088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -343,8 +366,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4589716710238282922, guid: 9a9137fa2b035d34e881701d2c178192,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1462750496664240030}
   m_SourcePrefab: {fileID: 100100000, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
+--- !u!1 &2224280096597589834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4589716710238282922, guid: 9a9137fa2b035d34e881701d2c178192,
+    type: 3}
+  m_PrefabInstance: {fileID: 2409366364130565088}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1462750496664240030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2224280096597589834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372abf360359b43beaff415a72a31e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  containerCounter: {fileID: 2568148599342984436}
 --- !u!4 &2224280096597589835 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4589716710238282923, guid: 9a9137fa2b035d34e881701d2c178192,
