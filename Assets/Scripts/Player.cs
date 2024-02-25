@@ -174,27 +174,27 @@ public class Player : BaseCounter, IKitchenObjectParent
     }
 
 
-    public Transform GetKitchenObjectFollowTransform()
+    public new Transform GetKitchenObjectFollowTransform()
     {
         return kitchenObjectHoldPoint;
     }
 
-    public void SetKitchenObject(KitchenObject kitchenObject)
+    public new void SetKitchenObject(KitchenObject kitchenObject)
     {
         this.kitchenObject = kitchenObject;
     }
 
-    public KitchenObject GetKitchenObject()
+    public new KitchenObject GetKitchenObject()
     {
         return kitchenObject;
     }
 
-    public void ClearKitchenObject()
+    public new void ClearKitchenObject()
     {
         kitchenObject = null;
     }
 
-    public bool HasKitchenObject()
+    public new bool HasKitchenObject()
     {
         return kitchenObject != null;
     }

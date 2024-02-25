@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a8c372a5a454079bb9b9baeabd3a9a, type: 3}
+  m_Name: MeatCooked-MeatBurned
+  m_EditorClassIdentifier: 
+  input: {fileID: 11400000, guid: 8e37ff3ff408e41a69aae581a023e774, type: 2}
+  output: {fileID: 11400000, guid: 6a5b4a098267f40deba1ffb9713f6b95, type: 2}
+  burningTimerMax: 5
