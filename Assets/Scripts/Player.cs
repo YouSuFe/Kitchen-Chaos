@@ -7,6 +7,8 @@ public class Player : BaseCounter, IKitchenObjectParent
 {
     public static Player Instance { get; private set;}
 
+    public event EventHandler OnPickUpSomething;
+
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs
     {
@@ -47,6 +49,7 @@ public class Player : BaseCounter, IKitchenObjectParent
 
     private void GameInput_OnInteractAlternateAction(object sender, EventArgs e)
     {
+        if (!GameManager.Instance.IsGamePlaying()) return;
         if (selectedCounter != null)
         {
             selectedCounter.InteractAlternate(this);
@@ -55,7 +58,9 @@ public class Player : BaseCounter, IKitchenObjectParent
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
     {
-        if(selectedCounter != null)
+        if (!GameManager.Instance.IsGamePlaying()) return;
+
+        if (selectedCounter != null)
         {
             selectedCounter.Interact(this);
         }
@@ -182,6 +187,10 @@ public class Player : BaseCounter, IKitchenObjectParent
     public new void SetKitchenObject(KitchenObject kitchenObject)
     {
         this.kitchenObject = kitchenObject;
+        if(kitchenObject != null)
+        {
+            OnPickUpSomething?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public new KitchenObject GetKitchenObject()
@@ -198,4 +207,5 @@ public class Player : BaseCounter, IKitchenObjectParent
     {
         return kitchenObject != null;
     }
+
 }
