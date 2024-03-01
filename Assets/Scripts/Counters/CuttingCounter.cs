@@ -5,7 +5,14 @@ using UnityEngine;
 
 public class CuttingCounter : BaseCounter , IHasProgress
 {
+    // It won't automatically destroy itself while in scene changing
+    // You have to do it manually
     public static event EventHandler OnAnyCut;
+
+    public static new void ResetStaticData()
+    {
+        OnAnyCut = null;
+    }
 
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
 
@@ -73,6 +80,7 @@ public class CuttingCounter : BaseCounter , IHasProgress
             cuttingProgress++;
 
             OnCut?.Invoke(this, EventArgs.Empty);
+            Debug.Log(OnAnyCut.GetInvocationList().Length);
             OnAnyCut?.Invoke(this, EventArgs.Empty);
 
             CuttingRecipeSO cuttingRecipeSO = GetTheCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
