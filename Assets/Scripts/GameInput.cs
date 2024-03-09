@@ -17,6 +17,7 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnInteractAction;
     public event EventHandler OnInteractAlternateAction;
     public event EventHandler OnPasueAction;
+    public event EventHandler OnBindingRebind;
 
     public enum Binding
     {
@@ -26,7 +27,10 @@ public class GameInput : MonoBehaviour
         Move_Left,
         Interact,
         Interact_Alternate,
-        Pause
+        Pause,
+        Gamepad_Interact,
+        Gamepad_InteractAlternate,
+        Gamepad_Pause
     }
 
     private void Awake()
@@ -101,6 +105,12 @@ public class GameInput : MonoBehaviour
                 return playerInputActions.Player.InteractAlternate.bindings[0].ToDisplayString();
             case Binding.Pause:
                 return playerInputActions.Player.Pause.bindings[0].ToDisplayString();
+            case Binding.Gamepad_Interact:
+                return playerInputActions.Player.Interact.bindings[1].ToDisplayString();
+            case Binding.Gamepad_InteractAlternate:
+                return playerInputActions.Player.InteractAlternate.bindings[1].ToDisplayString();
+            case Binding.Gamepad_Pause:
+                return playerInputActions.Player.Pause.bindings[1].ToDisplayString();
         }
 
     }
@@ -144,6 +154,18 @@ public class GameInput : MonoBehaviour
                 inputAction = playerInputActions.Player.Pause;
                 bindinIndex = 0;
                 break;
+            case Binding.Gamepad_Interact:
+                inputAction = playerInputActions.Player.Interact;
+                bindinIndex = 1;
+                break;
+            case Binding.Gamepad_InteractAlternate:
+                inputAction = playerInputActions.Player.InteractAlternate;
+                bindinIndex = 1;
+                break;
+            case Binding.Gamepad_Pause:
+                inputAction = playerInputActions.Player.Pause;
+                bindinIndex = 1;
+                break;
 
 
         }
@@ -158,6 +180,8 @@ public class GameInput : MonoBehaviour
                 // To save changes in case the player leaves the game
                 PlayerPrefs.SetString(PLAYER_PREF_BINDINGS, playerInputActions.SaveBindingOverridesAsJson());
                 PlayerPrefs.Save();
+
+                OnBindingRebind?.Invoke(this, EventArgs.Empty);
             })
             .Start();
     }

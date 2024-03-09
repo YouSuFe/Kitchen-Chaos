@@ -22,7 +22,8 @@ public class GamePauseUI : MonoBehaviour
 
         optionsButton.onClick.AddListener(() =>
         {
-            OptionsUI.Instance.Show();
+            Hide();
+            OptionsUI.Instance.Show(Show);
         });
     }
 
@@ -47,6 +48,11 @@ public class GamePauseUI : MonoBehaviour
     private void Show()
     {
         gameObject.SetActive(true);
+
+        // For selecting a button when game is paused in order to use gamepad
+        // If it is not here, gamepad cannot select any of button on UI
+        // You can do the same thing in inspector of EventSystem, first selected field
+        resumeButton.Select();
     }
 
     private void Hide()

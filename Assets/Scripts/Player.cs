@@ -126,7 +126,7 @@ public class Player : BaseCounter, IKitchenObjectParent
 
             // Attempt only move on the x-direction
             Vector3 moveDirectionX = new Vector3(movementVector.x, 0, 0).normalized;
-            canMove = moveDirection.x != 0 && !Physics.CapsuleCast(footPosition, headPosition, playerRadius, moveDirectionX, moveDistance);
+            canMove = (moveDirection.x < -.5f || moveDirection.x > .5f) && !Physics.CapsuleCast(footPosition, headPosition, playerRadius, moveDirectionX, moveDistance);
 
             if (canMove)
             {
@@ -140,7 +140,7 @@ public class Player : BaseCounter, IKitchenObjectParent
 
                 // Attempt only move on the z-direction
                 Vector3 moveDirectionZ = new Vector3(0, 0, moveDirection.z).normalized;
-                canMove = moveDirection.z != 0 && !Physics.CapsuleCast(footPosition, headPosition, playerRadius, moveDirectionZ, moveDistance);
+                canMove = (moveDirection.z < -.5f || moveDirection.z > .5f) && !Physics.CapsuleCast(footPosition, headPosition, playerRadius, moveDirectionZ, moveDistance);
 
                 if (canMove)
                 {
